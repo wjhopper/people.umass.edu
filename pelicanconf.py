@@ -3,15 +3,14 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Will Hopper'
-SITENAME = 'CC Lab Tutorials'
+SITENAME = 'Will Hopper'
 SITEURL = ''
 
 PATH = 'content'
-
 TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = 'en'
-
+DEFAULT_DATE = 'fs'
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
