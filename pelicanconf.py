@@ -8,7 +8,7 @@ SITESUBTITLE = 'Cognitive Psychology, Modeling, and Coding'
 SITEURL = ''
 
 PATH = 'content'
-STATIC_PATHS = ['img','pres','pub']
+STATIC_PATHS = ['img','pres','pub', 'misc']
 
 TIMEZONE = 'America/New_York'
 DEFAULT_LANG = 'en'
@@ -23,11 +23,11 @@ AUTHOR_FEED_RSS = None
 
 THEME = 'academia-red'
 AVATAR = 'will-web.jpg'
-# Blogroll
 
-# Social widget
-# SOCIAL = (('You can add links in your config file', '#'),
-#          ('Another social link', '#'),)
+# Links widget
+LINKS = (('cv', 'http://people.umass.edu/whopper/misc/CV.pdf'),
+         ('email', 'mailto:whopper@psych.umass.edu'),
+         ('github', 'https://github.com/wjhopper'))
 
 DEFAULT_PAGINATION = False
 
