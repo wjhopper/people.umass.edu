@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = 'Will Hopper'
 SITENAME = 'Will Hopper'
 SITESUBTITLE = 'Cognitive Psychology, Modeling, and Coding'
-SITEURL = ''
+SITEURL = 'http://people.umass.edu/whopper/'
 
 PATH = 'content'
 STATIC_PATHS = ['img','pres','pub', 'misc']
@@ -35,5 +35,6 @@ TAGS_SAVE_AS = ''
 AUTHORS_SAVE_AS = ''
 ARCHIVES_SAVE_AS = ''
 CATEGORIES_SAVE_AS = ''
+
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
+RELATIVE_URLS = True
