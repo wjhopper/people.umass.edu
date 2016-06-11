@@ -31,5 +31,9 @@ LINKS = (('cv', 'http://people.umass.edu/whopper/misc/CV.pdf'),
 
 DEFAULT_PAGINATION = False
 
+TAGS_SAVE_AS = ''
+AUTHORS_SAVE_AS = ''
+ARCHIVES_SAVE_AS = ''
+CATEGORIES_SAVE_AS = ''
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
