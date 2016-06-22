@@ -5,9 +5,9 @@ Summary: Copies of articles, stimuli and datasets
 
 Huber, D. E., Tomlinson, T. D., Jang, Y., & Hopper, W. J. (2015). The
 search of associative memory with recovery interference (SAM-RI) memory
-model and its application to retrieval practice paradigms. In Cognitive
+model and its application to retrieval practice paradigms. In *Cognitive
 Modeling in Perception and Memory: A Festschrift for Richard M.
-Shiffrin. Psychology Press, ch. 5.
+Shiffrin.* Psychology Press, ch. 5.
 
 -   [pdf]({filename}/pub/huber_shiffrin_festschrift.pdf)
 
