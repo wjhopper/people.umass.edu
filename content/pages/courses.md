@@ -1,10 +1,7 @@
 Title: Courses
 Summary: Get course descriptions, slides, demos, and assignments.
 
-
-###Taught as Lab Section TA
-
-#### Psych 640: Graduate Statistics
+#### Psych 640: Graduate Statistics<sup>1</sup>
 
 This two-semester course is designed to teach graduate students in
 psychology a theoretical understanding of the fundamental descriptive
@@ -20,7 +17,7 @@ are also taught basic programming skills in the R language.
     [640](https://moodle.umass.edu/course/view.php?id=22632) and for
     [641](#)
 
-#### Psych 240: Statistics In Psychology
+#### Psych 240: Statistics In Psychology<sup>1</sup>
 
 An introduction to statistics designed to give undergraduates the
 ability to understand basic analysis techniques used in psychological
@@ -33,7 +30,7 @@ thoughout the course to illustrate important concepts and analyze data.
 -   [Statistics
     Demonstrations](http://people.umass.edu/whopper/demos/demos.html)
 
-#### Psych 241: Research Methods
+#### Psych 241: Research Methods<sup>1</sup>
 
 This course gives a comprehensive overview of research methods in
 psychology. We cover include independent groups, repeated measures, and
@@ -42,3 +39,5 @@ studies. We also cover statical methods to analyze data collected from
 experiments, including regression and multi-factor ANOVA with
 interactions. Students will conduct small research projects in groups,
 analyze the data and write an APA style report of the results.
+
+<div class = "footnote"> 1. Denotes course taught as lab TA </div>
