@@ -27,8 +27,10 @@ correlation and regression, and hypothesis testing using t-tests and
 chi-squared tests. We use the R statistical computing environment
 thoughout the course to illustrate important concepts and analyze data.
 
+<!--
 -   [Statistics
     Demonstrations](http://people.umass.edu/whopper/demos/demos.html)
+-->
 
 #### Psych 241: Research Methods<sup>1</sup>
 
