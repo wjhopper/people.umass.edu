@@ -21,11 +21,11 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-THEME = 'academia-red'
+THEME = 'academia'
 AVATAR = 'will-web.jpg'
 
 # Links widget
-LINKS = (('cv', 'http://people.umass.edu/whopper/misc/CV.pdf'),
+LINKS = (('cv', 'misc/CV.pdf'),
          ('email', 'mailto:whopper@psych.umass.edu'),
          ('github', 'https://github.com/wjhopper'))
 
