@@ -35,7 +35,7 @@ thoughout the course to illustrate important concepts and analyze data.
 #### Psych 241: Research Methods<sup>1</sup>
 
 This course gives a comprehensive overview of research methods in
-psychology. We cover include independent groups, repeated measures, and
+psychology. We cover independent groups, repeated measures, and
 factorial experimental designs, along with observational and single case
 studies. We also cover statical methods to analyze data collected from
 experiments, including regression and multi-factor ANOVA with
