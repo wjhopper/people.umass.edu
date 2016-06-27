@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = 'Will Hopper'
 SITENAME = 'Will Hopper'
 SITESUBTITLE = 'Cognitive Psychology, Modeling, and Coding'
-SITEURL = 'http://people.umass.edu/whopper/'
+SITEURL = 'http://people.umass.edu/whopper'
 
 PATH = 'content'
 STATIC_PATHS = ['img','pres','pub', 'misc']
@@ -25,16 +25,24 @@ THEME = 'academia'
 AVATAR = 'will-web.jpg'
 
 # Links widget
-LINKS = (('cv', 'misc/CV.pdf'),
+LINKS = (('cv', '/misc/CV.pdf'),
          ('email', 'mailto:whopper@psych.umass.edu'),
          ('github', 'https://github.com/wjhopper'))
 
-DEFAULT_PAGINATION = False
+DEFAULT_PAGINATION = 5
+SUMMARY_MAX_LENGTH = 90
+DIRECT_TEMPLATES = ('index', 'posts_index', 'tags', 'archives')
+PAGINATED_DIRECT_TEMPLATES = ['posts_index']
 
-TAGS_SAVE_AS = ''
-AUTHORS_SAVE_AS = ''
-ARCHIVES_SAVE_AS = ''
-CATEGORIES_SAVE_AS = ''
+POSTS_PATHS = ['posts']
+POSTS_URL = 'posts/'
+POSTS_INDEX_SAVE_AS = 'posts/index.html'
+
+ARTICLE_URL = 'posts/{slug}/'
+ARTICLE_SAVE_AS = 'posts/{slug}/index.html'
+
+AUTHOR_SAVE_AS = False
+CATEGORY_SAVE_AS = False
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
