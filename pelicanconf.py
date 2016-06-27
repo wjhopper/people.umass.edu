@@ -25,7 +25,7 @@ THEME = 'academia'
 AVATAR = 'will-web.jpg'
 
 # Links widget
-LINKS = (('cv', '/misc/CV.pdf'),
+LINKS = (('cv', 'misc/CV.pdf'),
          ('email', 'mailto:whopper@psych.umass.edu'),
          ('github', 'https://github.com/wjhopper'))
 
@@ -44,5 +44,4 @@ ARTICLE_SAVE_AS = 'posts/{slug}/index.html'
 AUTHOR_SAVE_AS = False
 CATEGORY_SAVE_AS = False
 
-# Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+RELATIVE_URLS = False
