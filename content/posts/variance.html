@@ -4,7 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Parsing function arguments with the inputParser class</title>
+    <title>Better MATLAB functions with the inputParser class</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="tags" content="MATLAB, inputParser, functions" />
     <meta name="date" content="2017-01-31" />
@@ -87,45 +87,20 @@
 
 </style>
     <div>
-        <h2>Contents</h2>
-        <div>
-            <ul>
-                <li><a href="#1">Typical MATLAB functions</a></li>
-                <li><a href="#6">Writing a function using inputParser</a></li>
-                <li><a href="#7">Step 1: Declaring the function</a></li>
-                <li><a href="#8">Step 2: Create the inputParser instance</a></li>
-                <li><a href="#9">Step 3: Create the parsing schema</a></li>
-                <li><a href="#10">Step 4: Parse the inputs</a></li>
-                <li><a href="#11">Step 5: Use the inputs</a></li>
-                <li><a href="#12">Putting it all together</a></li>
-                <li><a href="#13">Further Reading</a></li>
-            </ul>
-        </div>
-        <h2>Typical MATLAB functions<a name="1"></a></h2>
-        <p>Anyone whose worked with MATLAB code for more than about 5 minutes has probably been frustrated by its lack of features and flexibility when it comes to function arguments (especially when compared to other languages used for similar tasks, like
+        <p>Anyone whose written their own functions in MATLAB has probably been frustrated by the language's lack of flexibility when it comes to function arguments (especially when compared to other languages used for similar tasks, like
             R and Python).</p>
-        <p>Traditionally, if you wanted your function to have optional arguments with default values, you were left to code your own ad-hoc solution in the function body itself. This inevitably leads to writing complex code that is difficult to maintain or
-            extend. I'm sure most people have seen functions that implement default arguments by sniffing the number of inputs, like so:</p>
-        <pre class="codeinput">
-          <span class="keyword">if</span> nargin &lt; 1 || isempty(x)
-            error(<span class="string">'Required input x missing!'</span>);
-          <span class="keyword">end</span></br>
-          <span class="keyword">if</span> nargin &lt; 2 || isempty(y)
-              y = x;
-          <span class="keyword">end</span></br>
-          <span class="keyword">if</span> nargin &lt; 3 || isempty(string)
-              string = <span class="string">'hello!'</span>
-          <span class="keyword">end</span>
-        </pre>
-        <p>And function calls that end up looking like this</p>
+        <p>Features like optional arguments with default values rely on the function author coding ad-hoc solution in the function body itself. This typically involves brittle solutions like sniffing the number of inputs with <code>nargin</code> or <code>varargin</code>
+          and forcing the user to supply empty arrays in place of the argument they want to be "missing", like so:
+        </p>
         <pre class="codeinput">some_random_function(x, [], [], [], [], 10)</pre>
-        <p>Good luck remembering that 10 is the 6th argument, not the 4th, 5th or 7th, without getting it wrong 5 times in a row. And named arguments, or a flexible argument order? Nope, sorry, not here.</p>
-        <p>Thankfully, the inputParser class provides a coherent way to parse function arguments that allows your function to:</p>
+        <p>As a user, good luck remembering that you want 10 to be the 6th argument, not the 5th or 7th, without first getting it wrong 2 times.
+           As a developer, good luck extending your function to take one more argument, or one fewer, without having to rewrite your entire argument parsing logic. And named arguments, or a flexible argument order? Nope, sorry, not here.</p>
+        <p>Thankfully, the <code>inputParser</code> class provides a coherent way to parse function arguments that allows your function to:</p>
         <div>
             <ul>
                 <li>Have optional arguments, with default values if omitted</li>
                 <li>Have a flexible argument order</li>
-                <li>Have named arguments by specifying <i>'ArgumentName', 'ArgumentValue'</i> in the functon call</li>
+                <li>Have named arguments in the functon call (well, almost =) )</li>
                 <li>Validate inputs (no more figuring out the input is bad by trying to use it!)</li>
             </ul>
         </div>
@@ -251,7 +226,7 @@ The value of 'VarianceType' is invalid. It must satisfy the function: @(s)ismemb
     </div>
     <!--
 ##### SOURCE BEGIN #####
-%% Parsing function arguments with the inputParser class
+%% Better MATLAB functions with the inputParser class
 
 %% Typical MATLAB functions
 % Anyone whose worked with MATLAB code for more than about 5 minutes has
