@@ -9,7 +9,8 @@
     <meta name="tags" content="MATLAB, inputParser, functions" />
     <meta name="date" content="2017-01-31" />
     <meta name="authors" content="Will Hopper" />
-    <meta name="summary" content="Functions arguments in MATLAB can be rigid and lead to lots of adhoc boilerplate code. Using the inputParser class to parse function arguments allows you to give your function named and optional arguments with default values simply and easily." />
+    <meta name="summary" content="Functions arguments in MATLAB can be rigid and force you to use lots of ad-hoc boilerplate code deal with optional arguments. Using the inputParser class to parse function arguments allows you to give your function named and optional arguments with default values, simply and easily. This post will show you how to get started using the inputParser class in your own code." />
+    <meta name="status" content="published" />
 </head>
 
 <body>
@@ -130,7 +131,7 @@
         <div>
             <ul>
                 <li><i>addRequired</i> (to add required positional arguments), and</li>
-                <li><i>addParameter</i> (to add optional arguments that are specified use a name, and can be supplied in any order <b>after</b> the positional arguments).</li>
+                <li><i>addParameter</i> (to add optional arguments that are specified using <i>'ArgumentName', value </i> pairs and can be supplied in any order <b>after</b> the positional arguments).</li>
             </ul>
         </div>
         <p>If you are using Octave, the equivalent of the <i>addParameter</i> function is the <i>addParamValue</i> function.</p>
@@ -139,12 +140,17 @@
             <ol>
                 <li>The inputParser object you are working with</li>
                 <li>The name of the argument (used internally by the inputParser, not to be used in the function call)</li>
-                <li>(Optionally) A handle to a function which accepts 1 input (i.e., the argument), and returns <i>true</i>, <i>false</i>, or throws an error. This function is used to determine whether the value supplied for that argument is acceptable to
+                <li>(Optionally) A handle to a validation function which accepts 1 input (i.e., the argument), and returns <i>true</i>, <i>false</i>, or throws an error. This function is used to determine whether the value supplied for that argument is acceptable to
                     be used in the function (known as validation). Anonymous function declarations <b>are</b> permittted in this context.</li>
             </ol>
         </div>
-        <p>The <i>addParameter</i> function takes the same 3 arguments as the <i>addRequired</i> function, but also takes a 4th argument, which sets the default value for that argument. This value is used if the argument is not supplied when the function
-            is called.</p>
+        <p>The <i>addParameter</i> function takes 4 arguments:</p>
+          <ol>
+              <li>The inputParser object you are working with</li>
+              <li>The name of the argument, which <bold>is></bold> to be used in the function call</li>
+              <li>The default value for that argument. This value is used if the argument is not supplied when the function is called.
+              <li>(Optionally) A handle to a validation function (with the same properties as outlined for the <i>addRequired</i> function).</li>
+          </ol>
         <p>Let use these function to create the input schema for our variance function. The order of these functions is important: all uses of the <i>addRequired</i> function must preceed any uses of the <i>addParameter</i> function.</p><pre class="codeinput">addRequired(p, <span class="string">'data'</span>, <span class="keyword">...</span>
             @(x) isnumeric(x) &amp;&amp; length(size(x))==2 &amp;&amp; (size(x,1)==1 || size(x,2)==1))
 addParameter(p, <span class="string">'RemoveMissing'</span>, false, @islogical)
@@ -153,7 +159,7 @@ addParameter(p, <span class="string">'VarianceType'</span>, <span class="string"
 </pre>
         <h2>Step 4: Parse the inputs<a name="10"></a></h2>
         <p>Now that our schema is defined, we can parse our inputs using the aptly named <i>parse</i> function. We supply the <i>parse</i> function with the inputParser object, and all the arguments specified in the function definition. Remember to expand
-            the <i>varargin</i> cell array with {:}!</p><pre class="codeinput">parse(p, x, varargin{:})
+            the <i>varargin</i> cell array with <code>{:}</code>!</p><pre class="codeinput">parse(p, x, varargin{:})
 </pre>
         <h2>Step 5: Use the inputs<a name="11"></a></h2>
         <p>The arguments and their results are then stored in the <i>Results</i> field of the inputParser object, which is a struct. You can access the value of each argument using the name you gave it in the call to <i>addRequired</i> or <i>addParameter</i>.</p>
@@ -205,7 +211,20 @@ ans =
     8.2500
 
 </pre>
+        <p>If we leave off the 'VarianceType' and 'RemoveMissing' arguments, it will use their default values. Since there was a missing value in the data, and the default is to not remove missing values, the answer ends up being <code>NaN</code></p>
+        <pre class="codeinput">
+variance([1:10, NaN], <span class="string">'VarianceType'</span>, <span class="string">'sample'</span>, <span class="string">'RemoveMissing'</span>, true)
+</pre>
+        <pre class="codeoutput">             data: [1 2 3 4 5 6 7 8 9 10 NaN]
+RemoveMissing: 0
+VarianceType: 'population'
 
+
+ans =
+
+NaN
+
+</pre>
         <p>If we call it with bad input, we'll get a validation error:</p>
         <pre class="codeinput">variance([1:10, NaN], <span class="string">'VarianceType'</span>, <span class="string">'asdfsa'</span>)</pre>
         <pre class="codeoutput error">Error using variance (line 157)
@@ -213,7 +232,8 @@ The value of 'VarianceType' is invalid. It must satisfy the function: @(s)ismemb
 </pre>
 
         <h2>Further Reading<a name="13"></a></h2>
-        <p>For more information about working with the inputParser class, checkout Mathworks documentation<p>
+        <p>I hope this has inspired you to use an inputParser for the next function you write that needs named arguments, flexible ordering, and easy default values!</p>
+        <p>For more information about working with the inputParser class, checkout Mathworks documentation</p>
         <ul>
           <li>
             <a href="https://www.mathworks.com/help/matlab/matlab_prog/parse-function-inputs.html">An example function that uses inputParser</a>
@@ -224,192 +244,6 @@ The value of 'VarianceType' is invalid. It must satisfy the function: @(s)ismemb
         </ul>
 
     </div>
-    <!--
-##### SOURCE BEGIN #####
-%% Better MATLAB functions with the inputParser class
-
-%% Typical MATLAB functions
-% Anyone whose worked with MATLAB code for more than about 5 minutes has
-% probably been frustrated by its lack of features and flexibility when it comes to
-% function arguments (especially when compared to other languages used for
-% similar tasks, like R and Python).
-%
-% Traditionally, if you wanted your function to have optional
-% arguments default values, you were left to code your own ad-hoc solution
-% in the function body itself. This inevitably leads writing complex code
-% that is difficult to maintain or extend. I'm sure most people have
-% seen functions that implement default arguments by sniffing the number
-% of inputs, like so:
-
-%%
-%   if nargin < 1 || isempty(x)
-%       error('Required input x missing!');
-%   end
-%
-%   if nargin < 2 || isempty(string)
-%       y = x;
-%   end
-%
-%   if nargin < 3 || isempty(string)
-%       string = 'hello!'
-%   end
-%
-%%
-% And function calls that end up looking like this
-
-%%
-%   some_random_function(x, [], [], [], [], 10)
-%
-
-%%
-% Good luck remembering that 10 is the 6th argument, not the 4th, 5th or 7th,
-% without getting it wrong 5 times in a row. And named arguments, or a flexible
-% argument order? Nope, sorry, not here.
-%
-% Thankfully, the inputParser class provides a coherent way to parse function
-% arguments that allows your function to:
-%
-% * Have optional arguments, with default values if omitted
-% * Have a flexible argument order
-% * Have named arguments (!) by specifying _'ArgumentName',
-% 'ArgumentValue'_ in the functon call
-% * Validate inputs (no more figuring out the input is bad by trying to use it!)
-%
-% inputParser is also supported in Octave >= 4.0, so your code will be
-% portable across environments (with some small caveats).
-
-%% Writing a function using inputParser
-% To see how to use the inputParser class, we're going to write a variance
-% function that takes 3 inputs
-%
-% # *x* (Unnamed, Required, Positional): A numeric vector to find the
-% variance of. Must be first argument supplied.
-% # *RemoveMissing* (Named, Optional,  a-positional): A logical value controlling whether the
-% calculated value will be an unbiased estimate of the population variance,
-% or the sample variance. Can be supplied in any position after first
-% argument.
-% # *VarianceType* (Named, Optional, a-positional): A character string controlling whether the
-% calculated value will be an unbiased estimate of the population variance,
-% or the sample variance. Can be supplied in any position after first
-% argument.
-
-%% Step 1: Declaring the function
-% Any unnamed, positional arguments should be declared first. In our case,
-% this means declaring _x_ as the first argument.
-%
-% If you want your function to accept optional, named arguments, you end the
-% arguments list with the _varargin_ keyword, which is a catch-all for any
-% additional inputs (similar to the *...* construct in R).
-%
-%   function [ var ] = variance(x, varargin)
-%% Step 2: Create the inputParser instance
-% The next thing you need is an inputParser object, which is created with
-% the _inputParser_ function. If you are unfamiliar with objects in MATLAB
-% or another programming language, you can think of objects as structs with
-% specialized functions that can operate on them. By convention, the
-% inputParser object is stored as the variable _p_.
-%
-%   p = inputParser;
-
-%% Step 3: Create the parsing schema
-% Before we can parse the input, we need to tell our inputParser object
-% what kind of inputs to expect. We do this using the functions:
-%
-% * _addRequired_ (to add required positional arguments), and
-% * _addParameter_ (to add optional arguments that are specified use a name, and can be supplied in any order *after* the positional arguments).
-%
-% If you are using Octave, the equivalent of the _addParameter_ function is
-% the _addParamValue_ function.
-%
-% The _addRequired_ function takes 3 arguments:
-%
-% # The inputParser object you are working with
-% # The name of the argument (used internally by the inputParser, not to be
-% used in the function call)
-% # (Optionally) A handle to a function which accepts 1 input (i.e., the
-% argument), and returns _true_, _false_, or throws an error. This function
-% is used to determine whether the value supplied for that argument is
-% acceptable to be used in the function (known as validation). Anonymous
-% function declarations *are* permittted in this context.
-%
-% The _addParameter_ function takes the same 3 arguments as the
-% _addRequired_ function, but also takes a 4th argument, which sets the
-% default value for that argument. This value is used if the argument is
-% not supplied in when the function is called.
-%
-% Let use these function to create the input schema for our variance
-% function. The order of these functions is important: all uses of the
-% _addRequired_ function must preceed any uses of the _addParameter_
-% function.
-%
-%   addRequired(p, 'data', ...
-%               @(x) isnumeric(x) && length(size(x))==2 && (size(x,1)==1 || size(x,2)==1))
-%   addParameter(p, 'RemoveMissing', false, @islogical)
-%   addParameter(p, 'VarianceType', 'population', ...
-%              @(s) ismember(s, {'population','sample'}))
-
-%% Step 4: Parse the inputs
-% Now that our schema is defined, we can parse our inputs using the aptly
-% named _parse_ function. We supply the _parse_ function with the
-% inputParser object, and all the arguments specified in the function
-% definition. Remember to expand the _varargin_ cell array with {:}!
-%
-%   parse(p, x, varargin{:})
-
-%% Step 5: Use the inputs
-% The arguments and their results are then stored in the _Results_ field of
-% the inputParser object, which is a struct. You can access the value of
-% each argument using the name you gave it in the call to _addRequired_ or
-% _addParameter_.
-%
-% For example, we would access the data argument like this:
-%
-%   p.Results.data
-
-
-%% Putting it all together
-% Now, lets  write the actual _variance_ function:
-
-function [var] = variance(x, varargin)
-    % Instantiate inputParser
-    p = inputParser;
-
-    % Setup parsing schema
-    addRequired(p, 'data', ...
-                @(x) isnumeric(x) && length(size(x))==2 && (size(x,1)==1 || size(x,2)==1))
-    addParameter(p, 'RemoveMissing', false, @islogical)
-    addParameter(p, 'VarianceType', 'population', ...
-               @(s) ismember(s, {'population','sample'}))
-
-    % Parse inputs
-    parse(p, x, varargin{:})
-
-    % For fun, show the results
-    disp(p.Results)
-
-    if p.Results.RemoveMissing
-        x = x(~isnan(x));
-    end
-
-    if strcmp(p.Results.VarianceType, 'population')
-        n = numel(x)-1;
-    else
-        n = numel(x);
-    end
-
-    SS = sum((x - mean(x)).^2);
-    var = SS/n;
-end
-%%
-% Now, we'll call it with the following arguments:
-%
-%   variance([1:10, NaN], 'VarianceType', 'sample', 'RemoveMissing', true)
-%
-% If we call it with bad input, we'll get a validation error:
-%
-%   variance([1:10, NaN], 'VarianceType', 'asdfsa')
-##### SOURCE END #####
--->
 </body>
 
 </html>
