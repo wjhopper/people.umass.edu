@@ -1,4 +1,5 @@
 Title: Presentations
+Status: published
 Summary: Get slides and posters from my presentations
 
 ### 2015

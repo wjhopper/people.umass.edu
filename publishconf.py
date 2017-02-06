@@ -20,6 +20,9 @@ RELATIVE_URLS = False
 DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
+DEFAULT_METADATA = {
+    'status': 'draft',
+}
 
 #DISQUS_SITENAME = ""
 #GOOGLE_ANALYTICS = ""

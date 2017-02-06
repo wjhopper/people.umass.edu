@@ -1,4 +1,5 @@
 Title: Publications
+Status: published
 Summary: Copies of articles, stimuli and datasets
 
 ### 2016

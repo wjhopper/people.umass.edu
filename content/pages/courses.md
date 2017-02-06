@@ -1,4 +1,5 @@
 Title: Courses
+Status: published
 Summary: Get course descriptions, slides, demos, and assignments.
 
 #### Psych 640: Graduate Statistics<sup>1</sup>

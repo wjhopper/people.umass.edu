@@ -1,4 +1,5 @@
 Title: Code
+Status: published
 Summary: Downloads and documentation for software packages.
 
 There are no stable releases to note! Currently all development versions
