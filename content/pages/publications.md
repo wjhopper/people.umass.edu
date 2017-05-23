@@ -7,7 +7,7 @@ Hopper, W. J.  & Huber, D. E. (2015).
 The Primary and Convergent Retrieval Model of Recall.
 *Proceedings of the 38th Annual Conference of the Cognitive Science Society.* Philadelphia, PA: Cognitive Science Society.
 
--   [pdf]({filename}/pub/huber_shiffrin_festschrift.pdf)
+-   [pdf]({filename}/pub/PCR_CogSci2016.pdf)
 
 ### 2015
 Huber, D. E., Tomlinson, T. D., Jang, Y., & Hopper, W. J. (2015).

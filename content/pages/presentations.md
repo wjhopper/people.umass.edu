@@ -2,6 +2,13 @@ Title: Presentations
 Status: published
 Summary: Get slides and posters from my presentations
 
+### 2016
+Hopper, W.J. & Huber, D.E.. The Primary and Convergent Retrieval Model of Recall.
+*Presentation given at the 2016 Context and Episodic Memory Symposium (CEMS)*
+
+Hopper, W.J. & Huber, D.E.. The Primary and Convergent Retrieval Model of Recall.
+*Poster Presentation given at the 2016 Annual Meeting of the Psychonomics Society*
+
 ### 2015
 
 Hopper, W.J. & Huber, D.E.. The short-term cost of retrieval failure
