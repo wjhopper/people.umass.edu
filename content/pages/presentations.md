@@ -1,5 +1,5 @@
 Title: Presentations
-Status: published
+Status: hidden
 Summary: Get slides and posters from my presentations
 
 ### 2016
