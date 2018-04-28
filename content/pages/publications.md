@@ -2,6 +2,12 @@ Title: Publications
 Status: published
 Summary: Copies of articles, stimuli and datasets
 
+### 2018
+Hopper, W. J.  & Huber, D. E. (in press).
+Learning to recall: Examining recall latencies to test an intra-item learning theory of testing effects. Journal of Memory and Language
+
+-   [pdf]({filename}/pub/PCR_JML_18.pdf)
+
 ### 2016
 Hopper, W. J.  & Huber, D. E. (2016).
 The Primary and Convergent Retrieval Model of Recall.
