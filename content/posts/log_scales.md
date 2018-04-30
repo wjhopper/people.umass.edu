@@ -20,7 +20,7 @@ print(p1)
 ```
 ![shrug]({filename}/img/logscale_linear.png).
 
-So far, so good - a pretty linear relationship between stopping distance and speed. Now, lets plot it with a log_2 scaled x axis (the car's speed), using a scale transformation.
+So far, so good - a pretty linear relationship between stopping distance and speed. Now, lets plot it with a log<sub>2</sub> scaled x axis (the car's speed), using a scale transformation.
 
 ```R
 p1 + scale_x_continuous(trans='log2') +
@@ -30,7 +30,7 @@ p1 + scale_x_continuous(trans='log2') +
 
 Now the relationship between speed and stopping distance looks a bit curvilinear, and the lablel on the x axis aren't evenly spaced in the linear scale. The distance between the first two tick marks represents the change from 4 to 8, but that same distance between the second and third tick marks represents the change from from 8 to 16 - a change two times as large!
 
-Now for the second way of log_2 scaling the x axis - with a coordinate transformation.
+Now for the second way of log<sub>2</sub> scaling the x axis - with a coordinate transformation.
 ```R
 p1 + coord_trans(x='log10') +
   ggtitle("Log axis, coord. transform")
@@ -42,14 +42,14 @@ This is very different! Instead of having ticks at 4, 8 and 16, we have ticks at
 Lets put all 3 plots side by side and compare:
 ![all three]({filename}/img/logscale_all3.png).
 
-We can see that in the last two plots, the points in each plot exactly line up each with other - we could overlay the two plots, and not be able tell the difference. So, the scaling worked, and we definitely got a log_2 scale in both. But the axis ticks, labels, and grid marks are wildly different. Why?
+We can see that in the last two plots, the points in each plot exactly line up each with other - we could overlay the two plots, and not be able tell the difference. So, the scaling worked, and we definitely got a log<sub>2</sub> scale in both. But the axis ticks, labels, and grid marks are wildly different. Why?
 
 In classic R help page fashion, the help page for `coord_trans` explains the difference precisely, but incomprehensibly. It says:
 > "`coord_trans` is different to scale transformations in that it occurs after statistical transformation and will affect the visual appearance of geoms - there is no guarantee that straight lines will continue to be straight."
 
 Um, OK? Do you get it? If not, keep reading.
 
-What happens in practice is that when using scale transformation method (i.e., using `scale_x_continuous(trans='log2')`), ggplot transforms the axis and data into log scale *before* figuring out where the tick marks go on the axis and what the tick labels should be. In `cood_trans` case, ggplot figures out where the ticks marks go on the axis first (still on the linear scale!), figures out what the labels should be, and *then* transforms observations into the log scale. But, it doesn’t recalculate the tick positions or the label values. It just moves their positions into log scale, along with the rest of the data. That’s why 20 and 25 are so much closer together than 5 and 10 when using `coord_trans` – because 5 and 10 are further apart on the log scale than 20 and 25 [log_2(10)-log_2(5) = 1, while log_2(25)-log_2(20) = 0.321].
+What happens in practice is that when using scale transformation method (i.e., using `scale_x_continuous(trans='log2')`), ggplot transforms the axis and data into log scale *before* figuring out where the tick marks go on the axis and what the tick labels should be. In `cood_trans` case, ggplot figures out where the ticks marks go on the axis first (still on the linear scale!), figures out what the labels should be, and *then* transforms observations into the log scale. But, it doesn’t recalculate the tick positions or the label values. It just moves their positions into log scale, along with the rest of the data. That’s why 20 and 25 are so much closer together than 5 and 10 when using `coord_trans` – because 5 and 10 are further apart on the log scale than 20 and 25 (log<sub>2</sub>10 - log<sub>2</sub>5 = 1, while log<sub>2</sub>25 - log<sub>2</sub>20 = 0.321].
 
 So in essence, this big visual difference boils down to an order of operations - do you transform the data before, or after, creating the axis ticks and labels. I love ggplot2, but I don't get how I'm supposed to understand why the two methods of log scaling produce visually different results from the documentation. Unless you've read the grammar of graphics, how are you supposed to know that determining axis tick positions (and thus, labels for a continuous variable) are related to "statistical transformations", or that a log scaled axis is a "statistical transformation". I didn't calculate statistics at all!
 
