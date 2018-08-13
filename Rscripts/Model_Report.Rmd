@@ -1,0 +1,15 @@
+---
+title: "Big Modeling Project"
+author: "William Hopper"
+date: "August 12, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+```
+
+```{r}
+
+```
+
