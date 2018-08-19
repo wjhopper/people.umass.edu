@@ -7,9 +7,31 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+set.seed(1234)
+reps <- 10000
 ```
 
-```{r}
+"True" intercept is 5, "True" slope is 3
+```{r regression}
+estimates <- replicate(reps, c(NA,NA), simplify = FALSE)
+for (i in 1:reps) {
+  x <- rnorm(100, 10, 2.5)
+  y <- 5 + 3*x + rnorm(100, 0, 3)
+  estimates[[i]] <- coef(lm(y ~ x)) - c(5, 3)
+}
+```
 
+```{r plot}
+library(ggplot2)
+library(tidyr)
+estimates <- as.data.frame(do.call(rbind, estimates))
+colnames(estimates) <- c("Intercept", "Slope")
+estimates$rep <- 1:nrow(estimates)
+estimates <- gather(estimates, key = "parameter", value = "error",
+                   Intercept, Slope)
+
+ggplot(estimates, aes(x = error)) +
+  geom_histogram() +
+  facet_grid( ~ parameter, scales = "free_x")
 ```
 
