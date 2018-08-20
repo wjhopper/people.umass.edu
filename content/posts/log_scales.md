@@ -1,24 +1,26 @@
 Title: How log scales work in ggplot
+Date: 2018-4-29
 Tags: ggplot, R, visualization, logarithms
 Slug: log_scales_ggplot
 Status: published
 Authors: Will Hopper
 Summary: Log scaled axis in figures can be a good way to represent information that spans a very large range of the scale. However, the axis themselves aren't very easy to interpret. To make matters worse, the two methods for automatically producing log scaled axis with `ggplot` produce *very* different looking figures. This post tries to clarify what differs between these two methods, and hopefully bring some clarity to your figure's axis.
 
-On a log scaled axis, a change of one unit along the axis reflects a change of one order of magnitude of the variable. For example, if an axis is plotted in log base 10 scale, a change of one unit along the axis represents a 10-fold increase on the variable. This can be a good way to represent information that spans a very large range of a scale (e.g., some observations near 0, and others near 10,000).
+On a log scaled axis, a change of one unit along the axis reflects a change of one order of magnitude in the variable. For example, if an axis is plotted in log base 10 scale, a change of one unit along the axis represents a 10-fold increase in the variable. This can be a good way to represent information that spans a very large range of a scale (e.g., some observations near 0, and others near 10,000).
 
-For easier interpretation of the plot in terms of the variable, a log scaled axis is typically labelled in the units of the variable, not the log units. However, this makes it really hard to understand log scales themselves. But, *c'est la vie*, you’re supposed to understand that when you see a log scaled axis that "the units of this axis are *really* just powers you raise the base to, but it's not labeled that way, so just remember that moving through this axis produces exponential changes in your variable. OK?" ![shrug]({filename}/img/shrug.png).
+For easier interpretation of the plot, a log scaled axis is typically labeled in the units of the variable, not the log units. However, this makes it really hard to understand log scales themselves. But, *c'est la vie*, you’re supposed to understand that when you see a log scaled axis, "the units of this axis are *really* just powers you raise the base to, but it's not labeled that way, so just remember that moving through this axis produces exponential changes in your variable. OK?" ![shrug]({filename}/img/shrug.png).
 
-But with `ggplot`, things get even more confusing because there are two ways to make a log-scaled axis. You can use a scale transformation (e.g., using `scale_x_continuous(trans='log2')`), or a coordinate transformation (e.g., using `coord_trans(x="log2")`. Having two ways to do things wouldn't be a bad thing, if the final product didn’t look so damn different between then two of them.
+But with `ggplot`, things get even more confusing because there are two ways to make a log-scaled axis. You can use a scale transformation (e.g., using `scale_x_continuous(trans='log2')`), or a coordinate transformation (e.g., using `coord_trans(x="log2")`. Having two ways of doing things wouldn't be a bad thing, if the final product didn’t look so damn different between then two of them.
 
-To see what I mean, let's examine the output of these two methods by plotting some data. We'll use the speed and stopping distance measurements in the built-in `cars` dataset. First, we'll plot the data using the linear scale on both axis.
+## Scales vs. Coordinates
+To see what I mean, let's examine the output of these two methods by plotting some data. We'll use the speed and stopping distance measurements from the built-in `cars` dataset. First, we'll plot the data using the linear scale on both axis.
 
 ```R
 p1 <- ggplot(cars, aes(x = speed, y = dist)) + geom_point() +
   ggtitle("Linear axis scales")
 print(p1)
 ```
-![shrug]({filename}/img/logscale_linear.png).
+![linear]({filename}/img/logscale_linear.png).
 
 So far, so good - a pretty linear relationship between stopping distance and speed. Now, lets plot it with a log<sub>2</sub> scaled x axis (the car's speed), using a scale transformation.
 
@@ -28,7 +30,7 @@ p1 + scale_x_continuous(trans='log2') +
 ```
 ![scale_trans]({filename}/img/logscale_scaletrans.png).
 
-Now the relationship between speed and stopping distance looks a bit curvilinear, and the lablel on the x axis aren't evenly spaced in the linear scale. The distance between the first two tick marks represents the change from 4 to 8, but that same distance between the second and third tick marks represents the change from from 8 to 16 - a change two times as large!
+Now the relationship between speed and stopping distance looks a bit curvilinear, and the labels on the x axis aren't evenly spaced on the linear scale. The distance between the first two tick marks represents the change from 4 to 8, but that same distance between the second and third tick marks represents the change from from 8 to 16 - a change two times as large!
 
 Now for the second way of log<sub>2</sub> scaling the x axis - with a coordinate transformation.
 ```R
@@ -44,6 +46,7 @@ Lets put all 3 plots side by side and compare:
 
 We can see that in the last two plots, the points in each plot exactly line up each with other - we could overlay the two plots, and not be able tell the difference. So, the scaling worked, and we definitely got a log<sub>2</sub> scale in both. But the axis ticks, labels, and grid marks are wildly different. Why?
 
+## Why so different?
 In classic R help page fashion, the help page for `coord_trans` explains the difference precisely, but incomprehensibly. It says:
 > "`coord_trans` is different to scale transformations in that it occurs after statistical transformation and will affect the visual appearance of geoms - there is no guarantee that straight lines will continue to be straight."
 

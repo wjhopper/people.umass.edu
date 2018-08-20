@@ -1,4 +1,5 @@
 Title: Loading an Rmarkdown cache
+Date: 2018-8-19
 Tags: R, Rmarkdown, knitr
 Slug: load_rmd_cache
 Status: published
