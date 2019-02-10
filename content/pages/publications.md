@@ -2,10 +2,10 @@ Title: Publications
 Status: published
 Summary: Copies of articles, stimuli and datasets
 
-## 2019
+### 2019
 Hopper, W. J., & Huber, D. E. (2019). Testing the primary and convergent retrieval model of recall: Recall practice produces faster recall success but also faster recall failure. Memory & Cognition, 1–26. https://doi.org/10.3758/s13421-019-00903-x
--   [on-line](https://link.springer.com/epdf/10.3758/s13421-019-00903-x)
 
+-   [on-line](https://link.springer.com/epdf/10.3758/s13421-019-00903-x)
 
 ### 2018
 Hopper, W. J.  & Huber, D. E. (2018).
