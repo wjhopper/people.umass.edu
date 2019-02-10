@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Will Hopper" />
+
+<meta name="date" content="2017-12-20" />
+
+<title>Kahana, 2002: Behavioral Data</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Kahana, 2002: Behavioral Data</h1>
+<h4 class="author"><em>Will Hopper</em></h4>
+<h4 class="date"><em>12/20/2017</em></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#behavioral-results">Behavioral Results</a><ul>
+<li><a href="#rizutto-kahana-2001-table-1">Rizutto &amp; Kahana (2001) Table 1</a></li>
+<li><a href="#kahana-2002-table-1">Kahana (2002) Table 1</a></li>
+<li><a href="#kahana-2002-table-2">Kahana (2002) Table 2</a></li>
+</ul></li>
+</ul>
+</div>
+
+<style>
+#behavioral-results table {
+  margin-bottom: 100px;
+  width: 80%;
+}
+</style>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(dplyr)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Kahana2002)
+<span class="kw">data</span>(Kahana2002, <span class="dt">package=</span><span class="st">&quot;Kahana2002&quot;</span>)
+<span class="kw">help</span>(<span class="st">'Kahana2002'</span>)</code></pre></div>
+<div class="r-help-page">
+<table width="100%" summary="page for Kahana2002">
+<tr>
+<td>
+Kahana2002
+</td>
+<td style="text-align: right;">
+R Documentation
+</td>
+</tr>
+</table>
+<h2>
+Kahana 2002 Dataset
+</h2>
+<h3>
+Description
+</h3>
+<p>
+Data from Kahana, M. J. (2002). <em>Associative symmetry and memory theory</em>. Memory &amp; Cognition, 30(6), 823-840. <a href="https://doi.org/10.3758/BF03195769" class="uri">https://doi.org/10.3758/BF03195769</a>.
+</p>
+<p>
+Also reported in Rizzuto, D. S., &amp; Kahana, M. J. (2001). <em>An autoassociative neural network model of paired-associate learning</em>. Neural Computation, 13(9), 2075-2092 <a href="https://doi.org/10.1162/089976601750399317" class="uri">https://doi.org/10.1162/089976601750399317</a> .
+</p>
+<h3>
+Format
+</h3>
+<p>
+A data frame with 2160 row and 13 variables. Each variable and its type is described below
+</p>
+<dl>
+<dt>
+subject
+</dt>
+<dd>
+<p>
+[integer] Individual subject identifier
+</p>
+</dd>
+<dt>
+block
+</dt>
+<dd>
+<p>
+[integer] Identifies a group of 24 test trials
+</p>
+</dd>
+<dt>
+test
+</dt>
+<dd>
+<p>
+[integer] Identifies the first or second test of a word pair
+</p>
+</dd>
+<dt>
+order
+</dt>
+<dd>
+<p>
+[integer] Identifies a pairs order of presentation within a round of testing
+</p>
+</dd>
+<dt>
+pair
+</dt>
+<dd>
+<p>
+[integer] Word pair identifier within a given subject and block
+</p>
+</dd>
+<dt>
+xreps
+</dt>
+<dd>
+<p>
+[integer] The number of times a word pair was presented during the study phase
+</p>
+</dd>
+<dt>
+cue_direction
+</dt>
+<dd>
+<p>
+[character] Describes the direction of recall. “forward” indicates that the first word in the pair was presented as cue to recall the second word, and “backward” indicates that the second word in the pair was presented as a cue to recall the first.
+</p>
+</dd>
+<dt>
+same_cue
+</dt>
+<dd>
+<p>
+[character] Indicates whether the cueing direction (forward vs. backward) was consistent between tests. A value of “same” indicates that the same direction was tested on both tests, and a value of “switch” means that the cueing direction reversed between tests.
+</p>
+</dd>
+<dt>
+given
+</dt>
+<dd>
+<p>
+[character] The word given as a recall cue
+</p>
+</dd>
+<dt>
+needed
+</dt>
+<dd>
+<p>
+[character] The word to be recalled in response to the cue word
+</p>
+</dd>
+<dt>
+correct
+</dt>
+<dd>
+<p>
+[logical] Accuracy on the test trial
+</p>
+</dd>
+<dt>
+no_resp
+</dt>
+<dd>
+<p>
+[logical] Indicates whether the participant gave up without giving a response on the test trial. In the raw dataset, these responses were coded as “ANSWER: N”.
+</p>
+</dd>
+<dt>
+time
+</dt>
+<dd>
+<p>
+[integer] The time, in milliseconds, from the onset of the recall cue until a response was given
+</p>
+</dd>
+</dl>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Remove missing observations</span>
+Kahana2002 &lt;-<span class="st"> </span><span class="kw">filter</span>(Kahana2002, <span class="op">!</span>no_resp)
+<span class="co"># add K02 class to enable summary methods</span>
+Kahana2002 &lt;-<span class="st"> </span><span class="kw">as.K02</span>(Kahana2002)</code></pre></div>
+<div id="behavioral-results" class="section level2">
+<h2>Behavioral Results</h2>
+<div id="rizutto-kahana-2001-table-1" class="section level3">
+<h3>Rizutto &amp; Kahana (2001) Table 1</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Summarize accuracy and RT by repetitions and cue direction</span>
+
+<span class="co"># First, find the mean for each condition for each subject</span>
+bySs_xreps_CueDirection &lt;-<span class="st"> </span><span class="kw">summary</span>(Kahana2002, subject, xreps, cue_direction)
+<span class="co"># Next, average across the means from each subject</span>
+<span class="co"># Should reproduce values from Rizutto and Kahana 2001 Table 1</span>
+byXreps_CueDirection &lt;-<span class="st"> </span><span class="kw">group_by</span>(bySs_xreps_CueDirection, xreps, cue_direction) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(accuracy),
+            <span class="dt">RT =</span> <span class="kw">mean</span>(RT),
+            <span class="dt">N =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>
+Forward and backward accuracy and RT by number of study presentations
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Accuracy
+</div>
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+RT
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:right;">
+Presentations
+</th>
+<th style="text-align:right;">
+Forward
+</th>
+<th style="text-align:right;">
+Backward
+</th>
+<th style="text-align:right;">
+Forward
+</th>
+<th style="text-align:right;">
+Backward
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;font-weight: bold;">
+1
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:right;">
+2337.08
+</td>
+<td style="text-align:right;">
+2284.85
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;">
+3
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+<td style="text-align:right;">
+2192.16
+</td>
+<td style="text-align:right;">
+1875.39
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;">
+5
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:right;">
+0.73
+</td>
+<td style="text-align:right;">
+1981.02
+</td>
+<td style="text-align:right;">
+1869.14
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>a</sup> Accuracy is measured as the proportion of correct responses, rounded to 2 digits
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>b</sup> RT is measured as the time to respond, in ms., on correct trials only
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div id="kahana-2002-table-1" class="section level3">
+<h3>Kahana (2002) Table 1</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Summarize accuracy and RT by repetitions, cue direction, and test number</span>
+
+<span class="co"># First, find the mean for each condition for each subject</span>
+bySs_test_xreps_CueDirection &lt;-<span class="st"> </span><span class="kw">summary</span>(Kahana2002, test, subject, xreps, cue_direction)
+<span class="co"># Next, average across the means from each subject</span>
+<span class="co"># Should reproduce values from Kahana 2002, Table 1</span>
+byTest_xreps_CueDirection &lt;-<span class="st"> </span><span class="kw">group_by</span>(bySs_test_xreps_CueDirection, test, xreps, cue_direction) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(accuracy),
+            <span class="dt">N_acc =</span> <span class="kw">n</span>(),            
+            <span class="dt">RT =</span> <span class="kw">mean</span>(RT, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+            <span class="dt">N_RT =</span> <span class="kw">sum</span>(<span class="op">!</span><span class="kw">is.na</span>(RT))
+            ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>
+Forward and backward accuracy and RT by number of study presentations on Test one and Test 2
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Test 1
+</div>
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Test 2
+</div>
+</th>
+</tr>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Forward
+</div>
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Backward
+</div>
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Forward
+</div>
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Backward
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Presentations
+</th>
+<th style="text-align:center;">
+RT
+</th>
+<th style="text-align:center;">
+Accuracy
+</th>
+<th style="text-align:center;">
+RT
+</th>
+<th style="text-align:center;">
+Accuracy
+</th>
+<th style="text-align:center;">
+RT
+</th>
+<th style="text-align:center;">
+Accuracy
+</th>
+<th style="text-align:center;">
+RT
+</th>
+<th style="text-align:center;">
+Accuracy
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+1
+</td>
+<td style="text-align:center;">
+2517.2
+</td>
+<td style="text-align:center;">
+0.330
+</td>
+<td style="text-align:center;">
+2707.1
+</td>
+<td style="text-align:center;">
+0.336
+</td>
+<td style="text-align:center;">
+2136.9
+</td>
+<td style="text-align:center;">
+0.374
+</td>
+<td style="text-align:center;">
+2021.0
+</td>
+<td style="text-align:center;">
+0.373
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+3
+</td>
+<td style="text-align:center;">
+2282.4
+</td>
+<td style="text-align:center;">
+0.646
+</td>
+<td style="text-align:center;">
+2004.8
+</td>
+<td style="text-align:center;">
+0.645
+</td>
+<td style="text-align:center;">
+2082.0
+</td>
+<td style="text-align:center;">
+0.660
+</td>
+<td style="text-align:center;">
+1745.4
+</td>
+<td style="text-align:center;">
+0.660
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+5
+</td>
+<td style="text-align:center;">
+1841.4
+</td>
+<td style="text-align:center;">
+0.734
+</td>
+<td style="text-align:center;">
+1852.8
+</td>
+<td style="text-align:center;">
+0.718
+</td>
+<td style="text-align:center;">
+2107.8
+</td>
+<td style="text-align:center;">
+0.767
+</td>
+<td style="text-align:center;">
+1872.2
+</td>
+<td style="text-align:center;">
+0.741
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>a</sup> Accuracy is measured as the proportion of correct responses
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>b</sup> RT is measured as the time to respond, in ms., on correct trials only
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div id="kahana-2002-table-2" class="section level3">
+<h3>Kahana (2002) Table 2</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Joint test one/test two accuracy by repetitions, and cue consistency</span>
+
+<span class="co"># Reshape the data so that each row holds both test 1 and test 2 performance</span>
+wide_Kahana2002 &lt;-<span class="st"> </span><span class="kw">joint_layout</span>(Kahana2002)
+<span class="co"># Calculate the joint accuracy one/test two accuracy for each subject</span>
+bySs_joint_acc &lt;-<span class="st"> </span><span class="kw">joint_accuracy</span>(wide_Kahana2002)
+<span class="co"># Then average across the values from each subject</span>
+<span class="co"># Should reproduce values from Kahana 2002, Table 2 and Rizutto and Kahana, 2001 Table 2</span>
+joint_acc &lt;-<span class="st"> </span><span class="kw">group_by</span>(bySs_joint_acc,
+                      xreps, same_cue, correct_<span class="dv">1</span>, correct_<span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">joint_accuracy =</span> <span class="kw">mean</span>(joint_accuracy),
+            <span class="dt">N =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<table>
+<caption>
+Contingency Tables for Same-Cue (Forward–Forward, Backward–Backward) and for Switched-Cue (Forward–Backward, Backward–Forward) Test one/Test two recall performance.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Same Cue
+</div>
+</th>
+<th style="text-align:center; border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;" colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Switch Cue
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Presentations
+</th>
+<th style="text-align:center;">
+Test 2
+</th>
+<th style="text-align:center;">
++
+</th>
+<th style="text-align:center;">
+-
+</th>
+<th style="text-align:center;">
++
+</th>
+<th style="text-align:center;">
+-
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;vertical-align: middle !important;" rowspan="2">
+1
+</td>
+<td style="text-align:center;font-weight: bold;">
++
+</td>
+<td style="text-align:center;">
+0.328
+</td>
+<td style="text-align:center;">
+0.011
+</td>
+<td style="text-align:center;">
+0.281
+</td>
+<td style="text-align:center;">
+0.126
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+-
+</td>
+<td style="text-align:center;">
+0.006
+</td>
+<td style="text-align:center;">
+0.654
+</td>
+<td style="text-align:center;">
+0.050
+</td>
+<td style="text-align:center;">
+0.543
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;vertical-align: middle !important;" rowspan="2">
+3
+</td>
+<td style="text-align:center;font-weight: bold;">
++
+</td>
+<td style="text-align:center;">
+0.608
+</td>
+<td style="text-align:center;">
+0.011
+</td>
+<td style="text-align:center;">
+0.612
+</td>
+<td style="text-align:center;">
+0.076
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+-
+</td>
+<td style="text-align:center;">
+0.034
+</td>
+<td style="text-align:center;">
+0.347
+</td>
+<td style="text-align:center;">
+0.045
+</td>
+<td style="text-align:center;">
+0.267
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;vertical-align: middle !important;" rowspan="2">
+5
+</td>
+<td style="text-align:center;font-weight: bold;">
++
+</td>
+<td style="text-align:center;">
+0.723
+</td>
+<td style="text-align:center;">
+0.017
+</td>
+<td style="text-align:center;">
+0.681
+</td>
+<td style="text-align:center;">
+0.090
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+-
+</td>
+<td style="text-align:center;">
+0.011
+</td>
+<td style="text-align:center;">
+0.248
+</td>
+<td style="text-align:center;">
+0.033
+</td>
+<td style="text-align:center;">
+0.195
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "FALSE";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
