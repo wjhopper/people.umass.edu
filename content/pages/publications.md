@@ -2,8 +2,13 @@ Title: Publications
 Status: published
 Summary: Copies of articles, stimuli and datasets
 
+## 2019
+Hopper, W. J., & Huber, D. E. (2019). Testing the primary and convergent retrieval model of recall: Recall practice produces faster recall success but also faster recall failure. Memory & Cognition, 1–26. https://doi.org/10.3758/s13421-019-00903-x
+-   [on-line](https://link.springer.com/epdf/10.3758/s13421-019-00903-x)
+
+
 ### 2018
-Hopper, W. J.  & Huber, D. E. (in press).
+Hopper, W. J.  & Huber, D. E. (2018).
 Learning to recall: Examining recall latencies to test an intra-item learning theory of testing effects. Journal of Memory and Language
 
 -   [pdf]({filename}/pub/PCR_JML_18.pdf)
