@@ -25,7 +25,7 @@ THEME = 'academia'
 AVATAR = 'will-web.jpg'
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['pelican_javascript']
+PLUGINS = ['pelican_javascript', 'render_math']
 
 # Links widget
 LINKS = (('cv', 'misc/CV.pdf'),
@@ -40,6 +40,7 @@ PAGINATED_DIRECT_TEMPLATES = ['posts_index']
 POSTS_PATHS = ['posts']
 POSTS_URL = 'posts/'
 POSTS_INDEX_SAVE_AS = 'posts/index.html'
+ARTICLE_EXCLUDES = ['misc']
 
 ARTICLE_URL = 'posts/{slug}/'
 ARTICLE_SAVE_AS = 'posts/{slug}/index.html'
