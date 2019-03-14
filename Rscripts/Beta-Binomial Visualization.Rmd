@@ -1,0 +1,114 @@
+---
+title: "Beta-Binomial Visualization"
+author: "William Hopper"
+date: "March 13, 2019"
+output:
+  html_document:
+    keep_md: yes
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(plotly)
+```
+
+```{r joint_distribution}
+p <- seq(0, 1, .01)
+y <- matrix(NaN, nrow=11, ncol=length(p),
+            dimnames = list("Succeses"=as.character(0:10),
+                            "Probaability" = as.character(p))
+            )
+
+for (i in 1:length(p)) {
+  y[,i] <- dbinom(0:10, p[i], size=10) * dbeta(p[i], 5, 5)
+}
+
+y <- y/sum(y) # normalize
+```
+
+```{r joint_plot}
+joint_plot <- plot_ly() %>%
+  add_trace(x=rep(0:10,each=101),
+            y=rep(p, 11),
+            z=as.vector(t(y)),
+            type = 'scatter3d', mode = 'lines',
+            line = list(color = '#000000', width = 5)) %>% 
+  add_trace(x=rep(0:10,101),
+            y=rep(p, each=11),
+            z=as.vector(y),
+            type = 'scatter3d', mode = 'lines+markers',
+            line=list(color=rep(p, each=11),
+                      width=2,
+                      colorbar=list(title='Prior Probability',
+                                    lenmode='fraction', len=0.5),
+                      colorscale='Viridis'
+                      ),
+            marker=list(color=rep(p, each=11),
+                        size=3,
+                        colorbar=list(title='Prior Probability',
+                                      lenmode='fraction', len=0.5),
+                        colorscale='Viridis'
+                        )
+            ) %>%
+  layout(title = "Joint Beta & Binomial Probability",
+         scene = list(
+           xaxis = list(title = "Number of Successes"),
+           yaxis = list(title = "Probability of Success"),
+           zaxis = list(title = "Probability")
+           ),
+         showlegend=FALSE,
+         hovermode=FALSE)
+joint_plot
+```
+
+```{r plot_with_plane}
+joint_plot %>% 
+  add_surface(x=rep(3, 101),
+              y=p,
+              z=matrix(rep(seq(0, max(y[4,]), length.out = 50),101),
+                       nrow=101, byrow = TRUE),
+              cauto = FALSE,
+              cmax = 1,
+              cmin = 0,
+              colorscale = list(c(0,'#d1d1d1'),c(1,'#000000')),
+              showscale=FALSE) %>%
+  layout(scene=list(
+           camera=list(
+             eye=list(x=-1.8, y=0, z=.35)
+             )
+           )
+         )
+
+```
+
+
+```{r statistics}
+# posterior given 3 successes, 7 failures
+my_posterior <- y[4,]/sum(y[4,])
+sum(my_posterior*p)
+
+# Monte-Carlo draws of posterior
+post_samples <- sample(p, size=2000, prob=my_posterior, replace = TRUE)
+mean(post_samples)
+median(post_samples)
+```
+
+```{r analytic_comparison, eval=FALSE}
+# true_posterior <- dbeta(p ,5+3, 5+7)
+# matplot(matrix(c(true_posterior, my_posterior, my_posterior*100),
+#                ncol=3, byrow=FALSE),
+#         type="l",col = c("black","red","green"),
+#         ylab="density",
+#         x=p)
+# legend("topright",legend = c("True","My Estimated","My Estimated * 100"),
+#        col = c("black","red","green"),lty=2)
+# 
+# # mean of "true" posterior
+# sum(true_posterior*p)
+# # mean of "my" posterior
+# sum(my_posterior*p)
+```
+
+
+
